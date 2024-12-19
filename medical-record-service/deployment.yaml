@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medical-record-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: medical-record-service
+  template:
+    metadata:
+      labels:
+        app: medical-record-service
+    spec:
+      containers:
+        - name: medical-record-service
+          image: medical-record-service:latest
+          ports:
+            - containerPort: 8084
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: medical-record-service
+spec:
+  selector:
+    app: medical-record-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8084
+  type: LoadBalancer
