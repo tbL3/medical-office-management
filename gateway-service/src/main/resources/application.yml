@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: patient-service
+          uri: lb://patient-service
+          predicates:
+            - Path=/patient/**
+        - id: practitioner-service
+          uri: lb://practitioner-service
+          predicates:
+            - Path=/practitioner/**
+        - id: appointment-service
+          uri: lb://appointment-service
+          predicates:
+            - Path=/appointment/**
+        - id: medical-record-service
+          uri: lb://medical-record-service
+          predicates:
+            - Path=/medical-record/**
