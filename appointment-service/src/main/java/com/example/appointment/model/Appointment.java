@@ -17,4 +17,28 @@ public class Appointment {
     private Date date;
 
     // Getters and Setters
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
+
+    public Long getPractitionerId() {
+        return practitionerId;
+    }
+
+    public void setPractitionerId(Long practitionerId) {
+        this.practitionerId = practitionerId;
+    }
 }
